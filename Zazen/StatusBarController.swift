@@ -4,13 +4,19 @@ import AppKit
 final class StatusBarController: NSObject {
     private var statusItem: NSStatusItem?
     private var enabledMenuItem: NSMenuItem?
+    private var launchAtLoginMenuItem: NSMenuItem?
     private var volumeSlider: NSSlider?
 
     private(set) var isEnabled = true
 
+    var isLaunchAtLogin = false {
+        didSet { launchAtLoginMenuItem?.state = isLaunchAtLogin ? .on : .off }
+    }
+
     var onToggleEnabled: ((Bool) -> Void)?
     var onPlayBell: (() -> Void)?
     var onVolumeChanged: ((Float) -> Void)?
+    var onToggleLaunchAtLogin: (() -> Void)?
 
     func setup() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -39,6 +45,12 @@ final class StatusBarController: NSObject {
         enabledMenuItem?.target = self
         enabledMenuItem?.state = .on
         menu.addItem(enabledMenuItem!)
+
+        launchAtLoginMenuItem = NSMenuItem(title: "Launch at Login", action: #selector(toggleLaunchAtLogin), keyEquivalent: "")
+        launchAtLoginMenuItem?.target = self
+        launchAtLoginMenuItem?.state = isLaunchAtLogin ? .on : .off
+        menu.addItem(launchAtLoginMenuItem!)
+
         menu.addItem(.separator())
 
         let volumeLabel = NSMenuItem(title: "Volume", action: nil, keyEquivalent: "")
@@ -65,6 +77,12 @@ final class StatusBarController: NSObject {
         menu.addItem(playItem)
         menu.addItem(.separator())
 
+        let shortcutItem = NSMenuItem(title: "Shortcut: ⌃⌥⌘M", action: nil, keyEquivalent: "")
+        shortcutItem.isEnabled = false
+        menu.addItem(shortcutItem)
+
+        menu.addItem(.separator())
+
         let quitItem = NSMenuItem(title: "Quit Zazen", action: #selector(quitTapped), keyEquivalent: "q")
         quitItem.target = self
         menu.addItem(quitItem)
@@ -76,6 +94,11 @@ final class StatusBarController: NSObject {
         isEnabled.toggle()
         enabledMenuItem?.state = isEnabled ? .on : .off
         onToggleEnabled?(isEnabled)
+    }
+
+    @objc private func toggleLaunchAtLogin() {
+        onToggleLaunchAtLogin?()
+        isLaunchAtLogin.toggle()
     }
 
     @objc private func volumeChanged(_ sender: NSSlider) {
