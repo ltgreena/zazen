@@ -76,15 +76,17 @@ Zazen has a minimal footprint:
 - **Process detection is read-only.** Meeting detection uses `sysctl` to list running processes by name. This is a standard macOS API that doesn't require elevated privileges.
 - **~800 lines of Swift.** The entire codebase is small enough to read in one sitting.
 
-If you don't trust a pre-built binary (reasonable!), build from source. The code is short and straightforward.
+The codebase is ~800 lines of Swift with zero external dependencies — small enough to read in one sitting. If you don't trust a pre-built binary (reasonable!), build from source and see for yourself.
 
 ## How this was made
 
-This app was built with substantial help from [Claude](https://claude.ai) (Anthropic's AI assistant). The initial version and subsequent features were developed in conversation with Claude Code, as reflected in the commit history.
+*(This part was written by a human.)*
 
-I'm being upfront about this because I think transparency matters more than pretense. AI-assisted development is how a lot of software gets written now, and I'd rather be honest about it than hide the `Co-Authored-By` tags.
+I vibe-coded this using [Claude Code](https://claude.ai/code) (Opus 4.6, 1M context window). I had the general idea, and Claude helped me to refine the specific product definition. We spent a bit of time in plan mode, then Claude was able to implement in essentially one shot. I spent most of the time trying to get the vibes right — improving the bell sounds, getting better imagery, better quotes, expanding to full screen, tweaking how long the bell and overlay last.
 
-That said, "AI-assisted" doesn't mean "unreviewed." The codebase is ~800 lines of Swift with zero external dependencies — small enough that every line has been read and understood. The security properties listed above aren't marketing claims; they're verifiable by reading the source.
+I haven't reviewed any of the code personally — but the app is small and self-contained and I'm pretty confident the security blast radius here is minimal. Feedback welcome — although you're also encouraged to just grab the code and customize it yourself.
+
+I hope you enjoy and that it helps improve your work day.
 
 ## License
 
