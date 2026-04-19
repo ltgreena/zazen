@@ -88,6 +88,10 @@ I haven't reviewed any of the code personally — but the app is small and self-
 
 I hope you enjoy and that it helps improve your work day.
 
+## Credits
+
+Singing bowl samples by [the_noises (Kasper)](https://kasper.bandcamp.com/album/singing-bowls), shared freely on [r/futurebeatproducers](https://www.reddit.com/r/futurebeatproducers/comments/8u0tab/free_tibetan_singing_bowls_sample_pack/). Four bowls, four hammers, two microphones — recorded and generously given away for the price of four cups of coffee.
+
 ## License
 
 [MIT](LICENSE)
