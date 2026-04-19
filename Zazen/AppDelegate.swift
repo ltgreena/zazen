@@ -63,7 +63,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         detector.stop()
     }
 
-    // MARK: - Global Hotkey (Ctrl+Option+Cmd+Z)
+    // MARK: - Global Hotkey (Ctrl+Option+Cmd+M)
 
     private func registerGlobalHotKey() {
         let hotKeyID = EventHotKeyID(signature: OSType(0x5A415A4E), id: 1)
